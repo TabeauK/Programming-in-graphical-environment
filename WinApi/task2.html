@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+    <h2>Gra Tanks - część domowa</h2>
+    <ul>
+        <li><a href="Tanks.exe">Aplikacja przykładowa</a></li>
+        <li>Zadanie polega na dokończeniu gry Tanks z części laboratoryjnej</li>
+		<li>Warunkiem sprawdzenia tej części jest zrobienie wszystkich funkcjonalności z części laboratoryjnej</li>
+        <li>W przypadku niejasności program musi być zgodny z zachowaniem i wyglądem aplikacji przykładowej, jednak nie należy wzorować się na potencjalnych błędach</li>
+	</ul>
+	
+	<h3>Uwagi:</h3>
+	<ul>
+		<li>Można korzystać w tej części z GDI</li>
+		<li>Proszę pamiętać o prawidłowym zarządzaniu pamięcią (zwalnianie niepotrzebnych obiektów)</li>
+	</ul>
+		
+	<h3>Layout:</h3>
+	<ul>
+		<li>Aplikacja podzielona jest na 3 widoki: widok gry, menu główne oraz top lista</li>
+		<li>Każdy widok może być w osobnym oknie</li>
+	</ul>
+	<ul>
+		<li>Menu główne:
+			<ul>
+				<li>Na środku znajduje się lista przycisków</li>
+				<ul>
+					<li>RETURN - powrót do trwającej gry (jeżeli nie ma gry, przycisk jest niewidoczny)</li>
+					<li>NEW GAME - włączenie nowej gry</li>
+					<li>TOP 10 - przejście do top listy</li>
+				</ul>
+            </ul>
+		</li>
+        <li>Widok gry:
+            <ul>
+				<li>Bazuje na stworzonym w części laboratoryjnej widoku</li>
+				<li>Zmianie ulega górny panel</li>
+				<ul>
+					<li>Podzielony na 3 części: statystyki gracza czerwonego, timer, statystyki gracza niebieskiego</li>
+					<li>W statystykach znajdują się informacje o poziomie życia, liczbie dostępnych pocisków oraz liczbie punktów</li>
+					<li>Przy każdej informacji znajduje się odpowiadająca jej ikonka</li>
+				</ul>
+                <li>Wszystkie obiekty gry dostają odpowiednią teksturę (przykładowe tekstury w folderze Textures)</li>
+				<li>Należy prawidłowo zaimplementować przezroczystość tekstur (dotyczy także ikon z panelu głównego)</li>
+            </ul>
+        </li>
+		<li>Top lista:
+			<ul>
+				<li>Na górze znajduje się tytuł widoku</li>
+				<li>Na środku lista 10 najlepszych wyników z gry, posortowana według punktów (malejąco)</li>
+				<li>Na dole przycisk RETURN (powrót do menu)</li>
+            </ul>
+		</li>
+	</ul>
+	<h3>Zasady gry:</h3>
+	<ul>
+		<li>Na planszy znajdują się dwa czołgi odpowiadające drużynie niebieskiej i czerwonej</li>
+		<li>Podczas gry pojawiają się na mapie bonusy</li>
+		<ul>
+			<li>Apteczka (dodaje 50 pkt życia)</li>
+			<li>Naboje (dodaje 20 amunicji)</li>
+			<li>Monety (dodaje 5 punktów)</li>
+        </ul>
+		<li>Gdy gracz najedzie na bonus ten znika i pojawia się nowy losowy bonus w nowym miejscu</li>
+		<li>Gracze mogą do siebie strzelać, za każdy trafiony strzał gracz dostaje 1 pkt, natomiast przeciwnikowi zabierane jest 20 pkt życia</li>
+		<li>Za każde zabójstwo gracz dostaje 10 pkt</li>
+		<li>Po śmierci gracz przenoszony jest w nowe losowe miejsce oraz odzyskuje 100 pkt życia</li>
+		<li>Każdy gracz posiada ogarniczoną liczbę pocisków</li>
+		<li>Jedna gra trwa minutę </li>
+	</ul>
+	<h3>Logika aplikacji:</h3>
+	<ul>
+		<li>Pierwszym widokiem aplikacji jest menu główne</li>
+		<li>Po wciśnięciu Esc: </li>
+		<ul>
+			<li>widok gry: gra jest pauzowana i wyświetlane jest menu główne</li>
+			<li>menu główne: powrót do gry (jeżeli jest)</li>
+			<li>top lista: powrót do menu</li>
+        </ul>
+		<li>Po zakończeniu rozgrywki aplikacja przenoszona jest do menu głównego, gdzie pojawia się na górze napis z wynikiem rozgrywki w kolorze zwycięskiej drużyny (w przypadku remisu kolor biały)</li>
+		<li>Gdy gra jest pauzowana wszystkie obiekty pozostają w miejscu (nie można sterować czołgami), a czas jest stopowany</li>
+		<li>Lista najlepszych wyników zapisywana jest automatycznie do pliku</li>
+		<li>Po ponownym uruchomieniu aplikacji dane powinny zostać wczytane z wspomnianego pliku</li>
+		<li>Po najechaniu na przycisk zmienia kolor</li>
+	</ul>
+	
+	<h3>Proponowane sterowanie:</h3>
+	<ul>
+		<li>Gracz czerwony:</li>
+		<ul>
+			<li>W, S, A, D - poruszanie się</li>
+			<li>SPACJA - strzał</li>
+        </ul>
+		<li>Gracz niebieski:</li>
+		<ul>
+			<li>NUM4, NUM5, NUM6, NUM8 - poruszanie się</li>
+			<li>NUM0 - strzał</li>
+        </ul>
+    </ul>
+	
+    <h3>Wskazówki:</h3>
+	<ul>
+		<li>GetCursorPos</li>
+		<li>ScreenToClient</li>
+		<li>Graphics</li>
+		<li>BitBlt</li>
+		<li>TranslateTransform</li>
+		<li>RotateTransform</li>
+		<li>GetKeyState</li>
+    </ul>
+
+    <h3>Punktacja:</h3>
+    <ul>
+		<li>Panel górny - 2.5</li>
+		<li>Teksturowanie z przezroczystością obiektów gry - 2</li>
+		<li>Logika gry - 3</li>
+		<li>Menu główne - 2.5</li>
+		<li>Lista najlepszych wyników - 2</li>
+    </ul>
+    </body>
+</html>

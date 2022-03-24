@@ -1,0 +1,109 @@
+﻿<Window x:Class="Lab2.AddEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab2"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Name="SecondWindow"
+        Title="Add Employee" Height="500" Width="500" ResizeMode="CanMinimize" FontSize="14">
+    <Window.Resources>
+
+        <local:STDCheck x:Key="STDCheck"/>
+        <local:ErrorMessage x:Key="ErrorMessage"/>
+        <ObjectDataProvider x:Key="EnumRole" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:MainWindow+Role" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <ObjectDataProvider x:Key="EnumCurrency" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:MainWindow+Currency" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="First Name:"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Last Name:"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Sex:" Grid.RowSpan="2"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="Birth Date:"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="Birth Country:"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="Salary:"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" Text="Salary Currency:"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" Text="Company Role:"/>
+
+        <TextBox Grid.Row="1" Grid.Column="2" MaxLength="50" Text="{Binding ElementName=SecondWindow, Path=DataContext.FirstName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2" Grid.Column="2" MaxLength="50" Text="{Binding ElementName=SecondWindow, Path=DataContext.LastName, Mode=TwoWay}"/>
+        <RadioButton Grid.Row="3" Grid.Column="2" Name="Male" GroupName="Sex"
+                     IsChecked="{Binding Path=Sex, Converter={StaticResource STDCheck}, ConverterParameter=Male}">Male</RadioButton>
+        <RadioButton Grid.Row="4" Grid.Column="2" Name="Female" GroupName="Sex"
+                     IsChecked="{Binding Path=Sex, Converter={StaticResource STDCheck}, ConverterParameter=Female}">Female</RadioButton>
+        <DatePicker Grid.Row="5" Grid.Column="2" SelectedDate="{Binding Path=BirthDate, Mode=TwoWay}"/>
+        <TextBox Grid.Row="6" Grid.Column="2" MaxLength="100" Text="{Binding Path=BirthCountry, Mode=TwoWay}"/>
+
+        <TextBox Grid.Row="7" Grid.Column="2" Name="SalaryText" ToolTip="{Binding ElementName=SalaryText, Path=(Validation.Errors)[0].ErrorContent}">
+            <TextBox.Text>
+                <Binding Path="Salary" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:SalaryValidation Min="5000"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <ComboBox ItemsSource="{Binding Source={StaticResource EnumCurrency}}" 
+                              Grid.Row="8" Grid.Column="2" SelectedItem="{Binding Path=SalaryCurrency, Mode=TwoWay}"/>
+
+        <ComboBox Grid.Row="9" Grid.Column="2"  ItemsSource="{Binding Source={StaticResource EnumRole}}" SelectedItem="{Binding Path=CompanyRole, Mode=TwoWay}" />
+
+        <Button Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Click="Button_Click">
+            <TextBlock Text="Add"/>
+        </Button>
+    </Grid>
+</Window>

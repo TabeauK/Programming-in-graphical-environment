@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+    <h2>Gra Tanks - część laboratoryjna</h2>
+    <ul>
+        <li><a href="Tanks.exe">Aplikacja przykładowa</a></li>
+        <li>Zadanie polega na stworzeniu szkieletu gry Tanks</li>
+        <li>W przypadku niejasności program musi być zgodny z zachowaniem i wyglądem aplikacji przykładowej, jednak nie należy wzorować się na potencjalnych błędach</li>
+	</ul>
+	
+	<h3>Uwagi:</h3>
+	<ul>
+		<li>Nie można korzystać w tej części z GDI!</li>
+		<li>Proszę pamiętać o prawidłowym zarządzaniu pamięcią (zwalnianie niepotrzebnych obiektów)</li>
+	</ul>
+		
+	<h3>Layout:</h3>
+	<ul>
+        <li>Okno główne:
+            <ul>
+				<li>Stały rozmiar obszaru klienta: 800 x 600</li>
+                <li>Brak możliwości maksymalizowania okna</li>
+				<li>Dwa obszary: pasek stanu, plansza do gry.</li>
+				<li>Ustawiony tytuł: "<i>{liczba punktów}</i>[<i>{czas}</i>]". Czas wyświetlony jest w formacie m:ss</li>
+				<li>Ustawiona ikonka: "tank_icon.ico" (Ikonka powinna być także widoczna w pasku zadań)</li>
+            </ul>
+        </li>
+		<li>Pasek stanu:
+			<ul>
+				<li>Kolor paska: (50,50,50)</li>
+				<li>Wysokość paska 40px</li>
+            </ul>
+		</li>
+		<li>Plansza do gry:
+			<ul>
+				<li>Kolor planszy: czarny</li>
+				<li>Na planszy znajdują się obiekty gry</li>
+            </ul>
+		</li>
+	</ul>
+	<h3>Obiekty:</h3>
+	<ul>
+		<li>Czołg</li>
+		<li>Moneta</li>
+		<li>Pociski</li>
+	</ul>
+	<ul>
+		<li>Obiekty reprezentowane jako kwadratowe okna</li>
+		<li>Każda grupa powinna się wyróżniać np. kolorem lub/oraz rozmiarem okna</li>
+	</ul>
+	<h3>Logika aplikacji:</h3>
+	<ul>
+		<li>Aplikacja uruchamia się na środku pulpitu</li>
+		<li>Przy poruszaniu okna głównego aplikacja staje się półprzezroczysta</li>
+		<li>Czas liczony jest od początku aplikacji</li>
+		<li>Czołg porusza się w pionie i poziomie</li>
+		<li>Czołg nie może wyjechać poza plansze</li>
+		<li>Po najechaniu przez czołg moneta znika, przyznawane są punkty i pojawia się w nowym losowym miejscu</li>
+		<li>Po naciśnieciu odpowiedniego przycisku czołg zaczyna strzelać pociskami (może być kilka pocisków na planszy)</li>
+		<li>Pociski po dotarciu do brzegu znikają</li>
+	</ul>
+	
+	<h3>Proponowane sterowanie:</h3>
+	<ul>
+		<li>W, S, A, D - poruszanie się</li>
+		<li>SPACJA - strzał</li>
+	</ul>
+	
+    <h3>Wskazówki:</h3>
+	<ul>
+		<li>CreateSolidBrush</li>
+		<li>AdjustWindowRect</li>
+		<li>SetTimer</li>
+		<li>WM_GETMINMAXINFO</li>
+		<li>WM_CTLCOLORSTATIC</li>
+		<li>WM_NCMOUSEMOVE</li>
+    </ul>
+
+    <h3>Punktacja:</h3>
+    <ul>
+		<li>Layout aplikacji - 2</li>
+		<li>Aplikacja uruchamia się na środku pulpitu - 1</li>
+		<li>Timer z poprawnym formatowaniem - 1</li>
+		<li>Półprzezroczystość przy przesuwaniu okna - 2</li>
+		<li>Obiekty wraz z logiką - 6</li>
+		<ul>
+			<li>Czołg - 2</li>
+			<li>Moneta - 1.5</li>
+			<li>Pociski - 2.5</li>
+		</ul>
+    </ul>
+    </body>
+</html>
