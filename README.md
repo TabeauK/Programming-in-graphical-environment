@@ -1,5 +1,5 @@
 # Programowanie w środowisku graficznym (Programming in graphical environment)
-Poniżej znajdują się 4 projekty przygotowane w różnych środowiskach graficznych
+Poniżej znajdują się 4 projekty przygotowane w różnych środowiskach graficznych. Zponiższych zdecydowanie najciekawszym jest gra w czołgi.
 
 ## WinApi - Gra w czołgi
 Aplikacja napisana w C++ jest grą dwuosobową w czołgi. 
